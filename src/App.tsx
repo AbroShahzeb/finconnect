@@ -1,8 +1,10 @@
+import { AppRouter } from "./routes/AppRouter";
+
 function App() {
   return (
-    <div className="bg-surface text-3xl font-bold flex items-center justify-center w-full min-h-screen">
-      Hello World
-    </div>
+    <>
+      <AppRouter />
+    </>
   );
 }
 
