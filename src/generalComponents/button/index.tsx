@@ -24,7 +24,7 @@ export const Button = ({
     secondary:
       "bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 hover:bg-transparent border border-transparent transition-all  hover:border-neutral-300 dark:hover:border-neutral-700 hover:text-primary-text",
     outlined:
-      "hover:bg-neutral-100 text-neutral-600 bg-transparent border hover:border-transparent transition-all  border-neutral-300 hover:text-primary-text",
+      "hover:bg-neutral-100 text-neutral-600 dark:text-neutral-300 bg-transparent border hover:border-transparent transition-all  border-neutral-300 hover:text-primary-text",
   };
   return (
     <button
