@@ -11,6 +11,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import ROUTES from "../../../../constants/routes";
 import { signUpSchema, SignUpSchema } from "../../../../schemas/signUpSchema";
 import { Button, Input } from "../../../../generalComponents";
+import { useMutation } from "@tanstack/react-query";
+import { register as registerUser } from "../../../../api/auth";
 
 export const Register = () => {
   const {
@@ -26,8 +28,23 @@ export const Register = () => {
     resolver: zodResolver(signUpSchema),
   });
 
+  const { mutate: registerUserAcc, isPending } = useMutation({
+    mutationFn: registerUser,
+    onSuccess: (res) => {
+      console.log("Login response", res);
+
+      if (res?.response?.data?.status === "fail") {
+        console.log(res.response.data.message);
+      }
+    },
+    onError(err) {
+      console.log("Register err", err);
+    },
+  });
+
   const onSubmit = (data: SignUpSchema) => {
     console.log(data);
+    registerUserAcc(data);
   };
 
   useEffect(() => {
@@ -86,7 +103,10 @@ export const Register = () => {
             registerProps={register("password")}
             hint={errors.password?.message ? "" : "At least 8 characters"}
           />
-          <Button type="submit" label="Register" />
+          <Button
+            type="submit"
+            label={isPending ? "Signing up..." : "Register"}
+          />
         </form>
 
         <div className="mt-4 pt-6 border-t border-neutral-200 dark:border-neutral-800 flex flex-col items-center gap-4">
@@ -102,7 +122,7 @@ export const Register = () => {
         <div className="mt-4 pt-6 border-t border-neutral-200 dark:border-neutral-800 flex flex-col items-center gap-4">
           <p className="text-preset-4 text-secondary-text">
             Already have an account?{" "}
-            <span className="text-primary-text">
+            <span className="text-blue-500 underline">
               <Link to={ROUTES.LOGIN}>Login</Link>
             </span>
           </p>

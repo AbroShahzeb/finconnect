@@ -11,6 +11,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, LoginSchema } from "../../../../schemas/loginSchema";
 import ROUTES from "../../../../constants/routes";
+import { useMutation } from "@tanstack/react-query";
+import { login } from "../../../../api/auth";
+import { showInfoToast, showSuccessToast } from "../../../../lib/toastUtils";
 
 export const Login = () => {
   const {
@@ -25,8 +28,23 @@ export const Login = () => {
     resolver: zodResolver(loginSchema),
   });
 
+  const { mutate: loginUser, isPending } = useMutation({
+    mutationFn: login,
+    onSuccess: (res) => {
+      if (res?.response?.data?.status === "fail") {
+        return showInfoToast(res.response.data.message);
+      }
+
+      showSuccessToast(res.message);
+    },
+    onError: (err) => {
+      console.log("login error", err);
+    },
+  });
+
   const onSubmit = (data: LoginSchema) => {
     console.log(data);
+    loginUser(data);
   };
 
   useEffect(() => {
@@ -78,7 +96,7 @@ export const Login = () => {
             error={errors.password?.message}
             registerProps={register("password")}
           />
-          <Button type="submit" label="Login" />
+          <Button type="submit" label={isPending ? "Logging in..." : "Login"} />
         </form>
 
         <div className="mt-4 pt-6 border-t border-neutral-200 dark:border-neutral-800 flex flex-col items-center gap-4">
@@ -94,7 +112,7 @@ export const Login = () => {
         <div className="mt-4 pt-6 border-t border-neutral-200 dark:border-neutral-800 flex flex-col items-center gap-4">
           <p className="text-preset-4 text-secondary-text">
             No account yet?{" "}
-            <span className="text-primary-text">
+            <span className="text-blue-500 underline">
               <Link to={ROUTES.REGISTER}>Register</Link>
             </span>
           </p>
