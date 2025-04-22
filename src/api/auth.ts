@@ -25,3 +25,14 @@ export const register = async (body: SignUpSchema) => {
     return err;
   }
 };
+
+export const getMe = async () => {
+  try {
+    const response = await axios.post(`${baseUrl}/me`, {
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (err) {
+    return err;
+  }
+};

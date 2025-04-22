@@ -5,7 +5,7 @@ import { toast } from "sonner";
 export const showSuccessToast = (message: string) => {
   toast.custom((t) => (
     <div
-      className="min-w-sm w-full max-w-lg bg-green-500 text-neutral-0 rounded-lg  px-4 py-3 flex flex-col  font-primary"
+      className="bg-green-500 text-neutral-0 rounded-lg  px-4 py-3 flex flex-col  font-primary"
       onClick={() => toast.dismiss(t)}
     >
       <span className="font-semibold text-preset-3">Success</span>
@@ -18,7 +18,7 @@ export const showSuccessToast = (message: string) => {
 export const showInfoToast = (message: string) => {
   toast.custom((t) => (
     <div
-      className="min-w-sm w-full max-w-lg bg-blue-500 text-neutral-0 rounded-lg  px-4 py-3 flex flex-col font-primary"
+      className="bg-blue-500 text-neutral-0 rounded-lg  px-4 py-3 flex flex-col font-primary"
       onClick={() => toast.dismiss(t)}
     >
       <span className="font-semibold text-preset-3">Info</span>
@@ -31,7 +31,7 @@ export const showInfoToast = (message: string) => {
 export const showErrorToast = (message: string) => {
   toast.custom((t) => (
     <div
-      className="min-w-sm w-full max-w-lg  bg-red-500 text-neutral-0 rounded-lg  px-4 py-3 flex flex-col  font-primary"
+      className=" bg-red-500 text-neutral-0 rounded-lg  px-4 py-3 flex flex-col  font-primary"
       onClick={() => toast.dismiss(t)}
     >
       <span className="font-semibold text-preset-3">Error</span>

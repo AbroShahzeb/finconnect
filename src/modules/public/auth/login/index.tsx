@@ -6,16 +6,17 @@ import {
   Logo,
 } from "../../../../assets/svgAssets";
 import { Input, Button } from "../../../../generalComponents";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, LoginSchema } from "../../../../schemas/loginSchema";
 import ROUTES from "../../../../constants/routes";
 import { useMutation } from "@tanstack/react-query";
 import { login } from "../../../../api/auth";
-import { showInfoToast, showSuccessToast } from "../../../../lib/toastUtils";
+import { showErrorToast, showSuccessToast } from "../../../../lib/toastUtils";
 
 export const Login = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -32,10 +33,12 @@ export const Login = () => {
     mutationFn: login,
     onSuccess: (res) => {
       if (res?.response?.data?.status === "fail") {
-        return showInfoToast(res.response.data.message);
+        return showErrorToast(res.response.data.message);
       }
 
       showSuccessToast(res.message);
+      localStorage.setItem("isAuthenticated", "true");
+      navigate(ROUTES.PRICING);
     },
     onError: (err) => {
       console.log("login error", err);

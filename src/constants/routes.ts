@@ -3,6 +3,7 @@ const ROUTES = {
   LOGIN: "/login",
   REGISTER: "/register",
   PRICING: "/pricing",
+  DASHBOARD: "/dashboard",
 };
 
 export default ROUTES;

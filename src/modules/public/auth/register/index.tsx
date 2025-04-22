@@ -5,7 +5,7 @@ import {
   GoogleIcon,
   Logo,
 } from "../../../../assets/svgAssets";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import ROUTES from "../../../../constants/routes";
@@ -13,8 +13,10 @@ import { signUpSchema, SignUpSchema } from "../../../../schemas/signUpSchema";
 import { Button, Input } from "../../../../generalComponents";
 import { useMutation } from "@tanstack/react-query";
 import { register as registerUser } from "../../../../api/auth";
+import { showErrorToast } from "../../../../lib/toastUtils";
 
 export const Register = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -31,11 +33,12 @@ export const Register = () => {
   const { mutate: registerUserAcc, isPending } = useMutation({
     mutationFn: registerUser,
     onSuccess: (res) => {
-      console.log("Login response", res);
-
       if (res?.response?.data?.status === "fail") {
-        console.log(res.response.data.message);
+        return showErrorToast(res.response.data.message);
       }
+
+      localStorage.setItem("isAuthenticated", "true");
+      navigate(ROUTES.PRICING);
     },
     onError(err) {
       console.log("Register err", err);
