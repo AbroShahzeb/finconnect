@@ -102,7 +102,7 @@ export const Login = () => {
         <div className="mt-4 pt-6 border-t border-neutral-200 dark:border-neutral-800 flex flex-col items-center gap-4">
           <p className="text-preset-4 text-secondary-text">Or Log in with:</p>
           <a
-            href="http://localhost:3007/api/auth/google"
+            href={import.meta.env.VITE_GOOGLE_AUTH_URL}
             className="py-4 px-5 flex items-center justify-center h-12 rounded-xl border border-neutral-300 dark:border-neutral-600 self-stretch"
           >
             <span className="text-primary-text">

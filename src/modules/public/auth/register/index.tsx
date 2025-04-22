@@ -111,12 +111,15 @@ export const Register = () => {
 
         <div className="mt-4 pt-6 border-t border-neutral-200 dark:border-neutral-800 flex flex-col items-center gap-4">
           <p className="text-preset-4 text-secondary-text">Or Log in with:</p>
-          <div className="py-4 px-5 flex items-center justify-center h-12 rounded-xl border border-neutral-300 dark:border-neutral-600 self-stretch">
+          <a
+            href={import.meta.env.VITE_GOOGLE_AUTH_URL}
+            className="py-4 px-5 flex items-center justify-center h-12 rounded-xl border border-neutral-300 dark:border-neutral-600 self-stretch"
+          >
             <span className="text-primary-text">
               <GoogleIcon />
             </span>
             <span className="px-4 text-primary-text">Google</span>
-          </div>
+          </a>
         </div>
 
         <div className="mt-4 pt-6 border-t border-neutral-200 dark:border-neutral-800 flex flex-col items-center gap-4">
