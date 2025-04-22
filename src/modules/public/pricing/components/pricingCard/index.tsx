@@ -1,4 +1,7 @@
+import { useMutation } from "@tanstack/react-query";
 import { Button } from "../../../../../generalComponents";
+import { createSubscription } from "../../../../../api/subscription";
+import { showErrorToast } from "../../../../../lib/toastUtils";
 
 export const PricingCard = ({
   title,
@@ -8,6 +11,17 @@ export const PricingCard = ({
   buttonText,
   price,
 }: Pricing) => {
+  const { mutate: subscribe, isPending } = useMutation({
+    mutationFn: createSubscription,
+    onSuccess: (res) => {
+      if (res?.response?.data?.status === "fail") {
+        return showErrorToast(res.response.data.message);
+      }
+      console.log("Subscription success", res);
+      console.log("Subscription response", res);
+      window.location.href = res?.url;
+    },
+  });
   return (
     <div
       className={`p-6 flex-1 flex flex-col gap-8 rounded-xl bg-neutral-50 dark:bg-neutral-900 border  ${
@@ -26,7 +40,7 @@ export const PricingCard = ({
           )}
         </h2>
         <p className="text-[32px] leading-[32px] font-semibold text-primary-text">
-          {price}
+          ${price}/mo
         </p>
       </div>
 
@@ -44,7 +58,11 @@ export const PricingCard = ({
 
       <div className="w-full h-[1px] bg-neutral-200 dark:bg-neutral-700"></div>
 
-      <Button label={buttonText} variant="outlined" />
+      <Button
+        label={isPending ? "loading..." : buttonText}
+        variant="outlined"
+        onClick={() => subscribe({ name: title, price })}
+      />
     </div>
   );
 };

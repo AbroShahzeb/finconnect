@@ -4,7 +4,7 @@ import { PricingCard } from "./components/pricingCard";
 export const pricingOptions: Pricing[] = [
   {
     title: "Starter",
-    price: "Free",
+    price: "10",
     monthlyCalls: "100 API calls/month",
     features: [
       "Basic fund transfers",
@@ -18,7 +18,7 @@ export const pricingOptions: Pricing[] = [
   },
   {
     title: "Pro",
-    price: "$29/mo",
+    price: "29",
     monthlyCalls: "50,000 API calls/month",
     features: [
       "Advanced fund transfer features",
@@ -33,7 +33,7 @@ export const pricingOptions: Pricing[] = [
   },
   {
     title: "Business",
-    price: "$99/mo",
+    price: "99",
     monthlyCalls: "500,000 API calls/month",
     features: [
       "Multi-user access",
