@@ -4,7 +4,7 @@ import { Login, Register } from "../modules/public/auth";
 import { Landing } from "../modules/public/landing";
 import { Pricing } from "../modules/public/pricing";
 import { DashboardLayout } from "../layout/dashboardLayout";
-import { Dashboard } from "../modules/private";
+import { Balance, Dashboard, Invoice, Transfer } from "../modules/private";
 import { ProtectedRoute } from "./ProtectedRoute";
 
 export const AppRouter = () => {
@@ -26,6 +26,9 @@ export const AppRouter = () => {
           }
         >
           <Route index path="" element={<Dashboard />} />
+          <Route path={"balance"} element={<Balance />} />
+          <Route path={"transfer"} element={<Transfer />} />
+          <Route path={"invoice"} element={<Invoice />} />
         </Route>
       </Routes>
     </BrowserRouter>

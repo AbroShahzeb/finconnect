@@ -1,5 +1,9 @@
+import { useQuery } from "@tanstack/react-query";
+import { getSubscription } from "../../../api/subscription";
 import { Navbar } from "../landing/components/navbar";
 import { PricingCard } from "./components/pricingCard";
+import { Link } from "react-router-dom";
+import ROUTES from "../../../constants/routes";
 
 export const pricingOptions: Pricing[] = [
   {
@@ -13,12 +17,12 @@ export const pricingOptions: Pricing[] = [
       "Sandbox access",
     ],
     isPopular: false,
-    buttonText: "Start for Free",
+    buttonText: "Subscribe",
     plan: "starter",
   },
   {
     title: "Pro",
-    price: "29",
+    price: "20",
     monthlyCalls: "50,000 API calls/month",
     features: [
       "Advanced fund transfer features",
@@ -28,7 +32,7 @@ export const pricingOptions: Pricing[] = [
       "Analytics dashboard",
     ],
     isPopular: true,
-    buttonText: "Upgrade to Pro",
+    buttonText: "Subscribe",
     plan: "pro",
   },
   {
@@ -43,26 +47,24 @@ export const pricingOptions: Pricing[] = [
       "Dedicated account manager (optional add-on)",
     ],
     isPopular: false,
-    buttonText: "Choose Business",
+    buttonText: "Subscribe",
     plan: "business",
   },
-  // {
-  //   title: "Enterprise",
-  //   price: "Custom",
-  //   monthlyCalls: "Unlimited API calls",
-  //   features: [
-  //     "Custom endpoints and features",
-  //     "Dedicated support team",
-  //     "Onboarding assistance",
-  //     "Compliance and audit reports",
-  //   ],
-  //   isPopular: false,
-  //   buttonText: "Contact Sales",
-  //   plan: "enterprise",
-  // },
 ];
 
+type Subscription = {
+  name: string;
+  price: number;
+};
+
 export const Pricing = () => {
+  const { data } = useQuery({
+    queryKey: ["subscription"],
+    queryFn: getSubscription,
+  });
+
+  const subscription = data?.data as Subscription;
+
   return (
     <main className="w-full   min-h-screen bg-surface-2">
       <div className="flex flex-col gap-8 max-w-[1110px] mx-auto w-full px-4">
@@ -71,6 +73,22 @@ export const Pricing = () => {
           <h2 className="text-[40px] leading-[40px] text-primary-text font-semibold">
             Pricing
           </h2>
+          {subscription && (
+            <p className="text-primary-text text-preset-3 mt-1 mb-3">
+              You already have an active{" "}
+              <span className="text-blue-500 font-semibold">
+                {subscription.name}
+              </span>{" "}
+              subscription. Please go to{" "}
+              <Link
+                to={ROUTES.DASHBOARD}
+                className="text-blue-500 font-semibold underline"
+              >
+                dashboard
+              </Link>{" "}
+              to use our awesome APIs.
+            </p>
+          )}
           <div className="flex gap-6 flex-col md:flex-row md:flex-wrap">
             {pricingOptions.map((pricing: Pricing) => (
               <PricingCard
@@ -81,6 +99,8 @@ export const Pricing = () => {
                 plan={pricing.plan}
                 price={pricing.price}
                 features={pricing.features}
+                subscriptionName={subscription?.name}
+                subscriptionPrice={subscription?.price}
               />
             ))}
           </div>

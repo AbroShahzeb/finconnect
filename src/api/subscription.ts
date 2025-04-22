@@ -15,3 +15,15 @@ export const createSubscription = async (body: {
     return err;
   }
 };
+
+export const getSubscription = async () => {
+  const userId = JSON.parse(localStorage.getItem("user")!)._id;
+  try {
+    const response = await axios.get(`${baseUrl}/${userId}`, {
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (err) {
+    return err;
+  }
+};

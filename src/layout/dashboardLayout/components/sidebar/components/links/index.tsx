@@ -1,23 +1,30 @@
 import { NavLink } from "react-router-dom";
 import {
-  ArchiveIcon,
   ChevronRight,
-  HomeIcon,
+  DollarIcon,
+  InvoiceIcon,
+  TransferIcon,
 } from "../../../../../../assets/svgAssets";
 import ROUTES from "../../../../../../constants/routes";
 
 const LINKS = [
   {
     id: 0,
-    name: "All Notes",
-    icon: <HomeIcon />,
-    route: ROUTES.HOME,
+    name: "Balance",
+    icon: <DollarIcon />,
+    route: ROUTES.BALANCE,
   },
   {
     id: 1,
-    name: "Archived Notes",
-    icon: <ArchiveIcon />,
-    route: ROUTES.HOME,
+    name: "Transfer",
+    icon: <TransferIcon />,
+    route: ROUTES.TRANSFER,
+  },
+  {
+    id: 2,
+    name: "Invoice",
+    icon: <InvoiceIcon />,
+    route: ROUTES.INVOICE,
   },
 ];
 

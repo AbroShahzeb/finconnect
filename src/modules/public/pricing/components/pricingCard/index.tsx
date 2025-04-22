@@ -10,6 +10,8 @@ export const PricingCard = ({
   isPopular,
   buttonText,
   price,
+  subscriptionName,
+  subscriptionPrice,
 }: Pricing) => {
   const { mutate: subscribe, isPending } = useMutation({
     mutationFn: createSubscription,
@@ -17,11 +19,10 @@ export const PricingCard = ({
       if (res?.response?.data?.status === "fail") {
         return showErrorToast(res.response.data.message);
       }
-      console.log("Subscription success", res);
-      console.log("Subscription response", res);
       window.location.href = res?.url;
     },
   });
+
   return (
     <div
       className={`p-6 flex-1 flex flex-col gap-8 rounded-xl bg-neutral-50 dark:bg-neutral-900 border  ${
@@ -59,9 +60,19 @@ export const PricingCard = ({
       <div className="w-full h-[1px] bg-neutral-200 dark:bg-neutral-700"></div>
 
       <Button
-        label={isPending ? "loading..." : buttonText}
-        variant="outlined"
+        label={
+          isPending
+            ? "loading..."
+            : subscriptionName === title
+            ? "Already Subscribed"
+            : buttonText
+        }
+        variant={subscriptionName === title ? "primary" : "outlined"}
         onClick={() => subscribe({ name: title, price })}
+        disabled={subscriptionName || subscriptionPrice ? true : false}
+        className={`${
+          subscriptionName === title ? "!bg-blue-500 !text-white" : ""
+        } `}
       />
     </div>
   );

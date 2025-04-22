@@ -38,6 +38,8 @@ export const Login = () => {
 
       showSuccessToast(res.message);
       localStorage.setItem("isAuthenticated", "true");
+      console.log("Login response", res);
+      localStorage.setItem("user", JSON.stringify(res.user));
       navigate(ROUTES.PRICING);
     },
     onError: (err) => {

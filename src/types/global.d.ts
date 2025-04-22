@@ -6,4 +6,6 @@ type Pricing = {
   isPopular: boolean;
   buttonText: string;
   price: string;
+  subscriptionName?: string;
+  subscriptionPrice?: number;
 };

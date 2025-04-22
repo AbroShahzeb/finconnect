@@ -38,6 +38,8 @@ export const Register = () => {
       }
 
       localStorage.setItem("isAuthenticated", "true");
+      localStorage.setItem("user", JSON.stringify(res.data));
+      console.log("Register response", res);
       navigate(ROUTES.PRICING);
     },
     onError(err) {

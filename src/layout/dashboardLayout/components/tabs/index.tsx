@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom";
 import {
-  ArchiveIcon,
-  HomeIcon,
-  SearchIcon,
+  DollarIcon,
+  InvoiceIcon,
   SettingsIcon,
   TagIcon,
+  TransferIcon,
 } from "../../../../assets/svgAssets";
 import ROUTES from "../../../../constants/routes";
 
@@ -19,23 +19,23 @@ type Tab = {
 const tabs = [
   {
     id: 0,
-    name: "Home",
-    icon: <HomeIcon />,
-    route: ROUTES.HOME,
+    name: "Balance",
+    icon: <DollarIcon />,
+    route: ROUTES.BALANCE,
     isLast: false,
   },
   {
     id: 1,
-    name: "Search",
-    icon: <SearchIcon />,
-    route: ROUTES.HOME,
+    name: "Transfer",
+    icon: <TransferIcon />,
+    route: ROUTES.TRANSFER,
     isLast: false,
   },
   {
     id: 2,
-    name: "Archived",
-    icon: <ArchiveIcon />,
-    route: ROUTES.HOME,
+    name: "Invoice",
+    icon: <InvoiceIcon />,
+    route: ROUTES.INVOICE,
     isLast: false,
   },
   {
