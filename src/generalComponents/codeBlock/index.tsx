@@ -30,13 +30,17 @@ export default function CodeBlock({
 
   return (
     <div className="py-8">
-      <p>Hello world</p>
       <pre className={`rounded-lg overflow-hidden`}>
         <div className="p-3 flex items-center justify-between bg-neutral-800 border-neutral-700 font-medium text-xs border-b ">
-          <span className="text-neutral-50">
-            {fileName && fileName}.{language}
-          </span>
-          <span className="cursor-pointer" onClick={handleCopyText}>
+          {fileName && (
+            <span className="text-neutral-50">
+              {fileName && fileName}.{language}
+            </span>
+          )}
+          <span
+            className="cursor-pointer text-right text-white"
+            onClick={handleCopyText}
+          >
             {copyText}
           </span>
         </div>

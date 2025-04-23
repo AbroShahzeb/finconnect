@@ -7,8 +7,17 @@ export const Balance = () => {
       <div>
         <PageHeader title="Balance" />
       </div>
-      <div className="flex-1 h-[calc(100vh-81px-44px)] sm:h-[calc(100vh-81px-74px)] lg:h-[calc(100vh-81px)]">
-        <p>Balance Page</p>
+      <div className="flex-1 px-4 h-[calc(100vh-81px-44px)] sm:h-[calc(100vh-81px-74px)] lg:h-[calc(100vh-81px)]">
+        <p className="text-preset-2 font-medium text-primary-text mt-2">
+          Documentation
+        </p>
+
+        {/* Endpoint  */}
+        <div>
+          <CodeBlock
+            code={`GET https://finconnect-api.shahzebabro.com/api/balance`}
+          />
+        </div>
         <CodeBlock
           code={`console.log("hello world")`}
           language="js"

@@ -38,7 +38,6 @@ export const Login = () => {
 
       showSuccessToast(res.message);
       localStorage.setItem("isAuthenticated", "true");
-      console.log("Login response", res);
       localStorage.setItem("user", JSON.stringify(res.user));
       navigate(ROUTES.PRICING);
     },
@@ -48,7 +47,6 @@ export const Login = () => {
   });
 
   const onSubmit = (data: LoginSchema) => {
-    console.log(data);
     loginUser(data);
   };
 

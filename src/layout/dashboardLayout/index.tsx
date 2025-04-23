@@ -8,7 +8,7 @@ export const DashboardLayout = () => {
       <div className="hidden lg:block">
         <Sidebar />
       </div>
-      <div className="flex-1 relative">
+      <div className="flex-1 relative pb-12 lg:pb-0">
         <Outlet />
         {/* <Link
           to={ROUTES.CREATE_NOTE}
