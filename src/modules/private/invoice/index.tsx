@@ -46,12 +46,13 @@ export const Invoice = () => {
   };
 
   return (
-    <main className="w-full flex-1 max-h-dvh h-full  bg-surface-2  min-h-dvh">
+    <main className="w-full flex-1 max-h-dvh h-full overflow-y-auto  bg-surface-2  min-h-dvh">
       <div>
         <PageHeader title="Invoice" />
       </div>
-      <div className="flex-1 flex h-[calc(100vh-81px-44px)] overflow-y-auto sm:h-[calc(100vh-81px-74px)] lg:h-[calc(100vh-81px)]">
-        <div className="px-4 lg:w-[291px] flex flex-col gap-4 lg:h-[calc(100vh-81px)] overflow-y-auto lg:pl-8  pt-5 lg:border-r border-neutral-200 dark:border-neutral-800">
+      <div className="flex-1 flex flex-col lg:flex-row h-full overflow-y-auto">
+        {/* Sidebar */}
+        <div className="w-full lg:w-[291px] flex-shrink-0 border-b lg:border-b-0 lg:border-r border-neutral-200 dark:border-neutral-800 px-4 lg:pl-8 pt-5">
           <div className="flex flex-col gap-6">
             <p className="text-preset-3 text-primary-text font-medium">
               Enter Start and End Date to Generate your invoice
@@ -81,8 +82,10 @@ export const Invoice = () => {
             </form>
           </div>
         </div>
+
+        {/* Main content area */}
         {invoiceData && (
-          <div className="p-6">
+          <div className="flex-1 overflow-y-auto p-6">
             <InvoiceCard {...(invoiceData as InvoiceType)} />
           </div>
         )}
