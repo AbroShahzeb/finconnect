@@ -27,3 +27,16 @@ export const getSubscription = async () => {
     return err;
   }
 };
+
+export const cancelSubscription = async () => {
+  try {
+    const response = await axios.post(
+      `${baseUrl}/cancel`,
+      {},
+      { withCredentials: true }
+    );
+    return response.data;
+  } catch (err) {
+    return err;
+  }
+};

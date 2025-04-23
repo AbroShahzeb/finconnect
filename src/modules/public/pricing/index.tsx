@@ -55,6 +55,7 @@ export const pricingOptions: Pricing[] = [
 type Subscription = {
   name: string;
   price: number;
+  status: "active" | "cancelled" | "expired";
 };
 
 export const Pricing = () => {
@@ -73,7 +74,7 @@ export const Pricing = () => {
           <h2 className="text-[40px] leading-[40px] text-primary-text font-semibold">
             Pricing
           </h2>
-          {subscription && (
+          {subscription && subscription.status === "active" && (
             <p className="text-primary-text text-preset-3 mt-1 mb-3">
               You already have an active{" "}
               <span className="text-blue-500 font-semibold">

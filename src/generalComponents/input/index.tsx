@@ -11,6 +11,7 @@ interface Props {
   placeholder?: string;
   type?: string;
   registerProps?: React.InputHTMLAttributes<HTMLInputElement>;
+  disabled?: boolean;
 }
 
 export const Input = ({
@@ -24,6 +25,7 @@ export const Input = ({
   placeholder = "",
   type = "text",
   registerProps = {},
+  disabled = false,
 }: Props) => {
   return (
     <div className="flex flex-col gap-1.5">
@@ -46,6 +48,7 @@ export const Input = ({
           className="placeholder:text-neutral-300 dark:placeholder:text-neutral-600  w-full outline-none text-primary-text text-preset-4"
           type={type}
           {...registerProps}
+          disabled={disabled}
         />
         {postIcon && postIcon}
       </div>

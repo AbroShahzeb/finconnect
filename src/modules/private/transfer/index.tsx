@@ -19,7 +19,7 @@ export const Transfer = () => {
   } = useForm<TransferFunds>({
     defaultValues: {
       to: "",
-      from: "",
+      from: JSON.parse(localStorage.getItem("user")!)?._id || "",
       title: "",
       description: "",
       amount: "",
@@ -68,6 +68,7 @@ export const Transfer = () => {
                 placeholder="From Account"
                 label="From Account ID"
                 error={errors.from?.message}
+                disabled
               />
               <Input
                 registerProps={register("title")}

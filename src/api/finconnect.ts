@@ -31,3 +31,15 @@ export const transferFundsAPI = async (body: TransferFunds) => {
     return error;
   }
 };
+
+export const getBalanceAPI = async () => {
+  try {
+    const response = await axios.get(`${baseUrl}/balance`, {
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error getting balance:", error);
+    return error;
+  }
+};

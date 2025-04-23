@@ -15,6 +15,21 @@ export const login = async (body: LoginSchema) => {
   }
 };
 
+export const logout = async () => {
+  try {
+    const response = await axios.post(
+      `${baseUrl}/logout`,
+      {},
+      {
+        withCredentials: true,
+      }
+    );
+    return response.data;
+  } catch (err) {
+    return err;
+  }
+};
+
 export const register = async (body: SignUpSchema) => {
   try {
     const response = await axios.post(`${baseUrl}/register`, body, {
