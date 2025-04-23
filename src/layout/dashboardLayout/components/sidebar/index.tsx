@@ -17,6 +17,7 @@ export const Sidebar = () => {
       if (res?.response?.data?.status === "fail") {
         return showErrorToast(res.response.data.message);
       }
+      window.location.href = res.url;
       navigate(ROUTES.PRICING, { replace: true });
     },
   });
